@@ -1,0 +1,1693 @@
+<!DOCTYPE html>
+<html lang="km" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>សំបុត្រអាពាហ៍ពិពាហ៍ - ផល បូណា & ទ្រី ទិក</title>
+
+    <!-- Google Fonts: Khmer & Royal Editorial Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="icon" href="b.jpg" type="image/x-icon">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,600;1,600&family=Great+Vibes&family=Kantumruy+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Moul&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- AOS (Animate On Scroll) CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        champagne: '#FAF6F0',
+                        sand: '#F1E9DC',
+                        emerald: {
+                            royal: '#0B2520',
+                            deep: '#11352E',
+                            card: '#164239'
+                        },
+                        gold: {
+                            metallic: '#D4AF37',
+                            bright: '#E5C158',
+                            bronze: '#A68323'
+                        }
+                    },
+                    fontFamily: {
+                        moul: ['"Moul"', 'serif'],
+                        khmer: ['"Kantumruy Pro"', 'sans-serif'],
+                        cinzel: ['"Cinzel"', 'serif'],
+                        script: ['"Great Vibes"', 'cursive']
+                    },
+                    boxShadow: {
+                        'editorial': '0 20px 50px -15px rgba(11, 37, 32, 0.14)',
+                        'gold-glow': '0 10px 30px -5px rgba(212, 175, 55, 0.4)'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Base Royal Champagne & Emerald Styling */
+        body {
+            background-color: #FAF6F0;
+            color: #0B2520;
+            font-family: 'Kantumruy Pro', sans-serif;
+            overflow-x: hidden;
+        }
+
+        body.cover-locked {
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        /* Subtle Royal Khmer Diamond Lattice Pattern */
+        .bg-royal-lattice {
+            background-color: #FAF6F0;
+            background-image:
+                linear-gradient(135deg, rgba(212, 175, 55, 0.06) 25%, transparent 25%),
+                linear-gradient(225deg, rgba(212, 175, 55, 0.06) 25%, transparent 25%),
+                linear-gradient(45deg, rgba(212, 175, 55, 0.06) 25%, transparent 25%),
+                linear-gradient(315deg, rgba(212, 175, 55, 0.06) 25%, #FAF6F0 25%);
+            background-position: 20px 0, 20px 0, 0 0, 0 0;
+            background-size: 40px 40px;
+            background-repeat: repeat;
+        }
+
+        .editorial-card {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(212, 175, 55, 0.35);
+        }
+
+        .emerald-glass {
+            background: rgba(11, 37, 32, 0.92);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid rgba(229, 193, 88, 0.32);
+        }
+
+        .gold-gradient-btn {
+            background: linear-gradient(135deg, #E5C158 0%, #D4AF37 50%, #B38E25 100%);
+            transition: all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .gold-gradient-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 28px -6px rgba(212, 175, 55, 0.55);
+        }
+
+        .gold-text-shimmer {
+            background: linear-gradient(to right, #A68323, #D4AF37, #E5C158, #D4AF37, #A68323);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% auto;
+        }
+
+        /* Envelope Cover Curtain Reveal */
+        #welcome-cover {
+            transition: transform 0.95s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.85s ease;
+        }
+
+        #welcome-cover.opened {
+            transform: translateY(-100%);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* AOS Safety Fallback */
+        html.aos-fallback [data-aos] {
+            opacity: 1 !important;
+            transform: none !important;
+        }
+
+        /* Custom Scrollbar */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #F1E9DC;
+            border-radius: 999px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #D4AF37;
+            border-radius: 999px;
+        }
+
+        /* Music Wave Pulse */
+        @keyframes ripple-gold {
+            0% {
+                transform: scale(0.95);
+                opacity: 0.75;
+            }
+
+            75% {
+                transform: scale(1.4);
+                opacity: 0;
+            }
+
+            100% {
+                transform: scale(1.4);
+                opacity: 0;
+            }
+        }
+
+        .music-pulse::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 9999px;
+            border: 2px solid #E5C158;
+            animation: ripple-gold 2s infinite;
+        }
+
+        /* Active Navigation Pill State */
+        .nav-item.active {
+            color: #E5C158;
+            font-weight: 600;
+        }
+
+        .mobile-nav-item.active {
+            background-color: #D4AF37;
+            color: #0B2520;
+            font-weight: 700;
+        }
+    </style>
+</head>
+
+<body class="cover-locked antialiased selection:bg-gold-metallic selection:text-emerald-royal pb-24 md:pb-0">
+
+    <!-- =====================================================================
+         1. ROYAL EMERALD ENVELOPE COVER (អេក្រង់ស្វាគមន៍បើកធៀបអញ្ជើញ)
+    ====================================================================== -->
+    <div id="welcome-cover"
+        class="fixed inset-0 z-50 flex items-center justify-center bg-emerald-royal text-champagne px-4 overflow-hidden">
+        <!-- Double Royal Gold Arch Frame -->
+        <div class="absolute inset-3 sm:inset-5 border border-gold-metallic/40 rounded-[2rem] pointer-events-none">
+        </div>
+        <div
+            class="absolute inset-5 sm:inset-7 border border-dashed border-gold-metallic/25 rounded-[1.5rem] pointer-events-none">
+        </div>
+
+        <!-- Ambient Emerald & Gold Glows -->
+        <div
+            class="w-96 h-96 bg-gold-metallic/15 rounded-full blur-3xl absolute -top-24 left-1/2 -translate-x-1/2 pointer-events-none">
+        </div>
+        <div class="w-80 h-80 bg-emerald-card/60 rounded-full blur-3xl absolute -bottom-20 right-0 pointer-events-none">
+        </div>
+
+        <div class="relative z-10 max-w-md w-full text-center space-y-6 py-8 px-4">
+            <!-- Ornate Khmer Royal Crest Emblem -->
+            <div class="mx-auto w-28 h-28 flex items-center justify-center relative">
+                <svg viewBox="0 0 120 120" class="w-full h-full text-gold-bright drop-shadow-xl">
+                    <polygon points="60,4 116,60 60,116 4,60" fill="none" stroke="currentColor" stroke-width="1"
+                        stroke-opacity="0.45" />
+                    <circle cx="60" cy="60" r="46" fill="#11352E" stroke="currentColor" stroke-width="1.5" />
+                    <circle cx="60" cy="60" r="41" fill="none" stroke="currentColor" stroke-width="0.75"
+                        stroke-dasharray="2 3" />
+                    <!-- Khmer Crown Spire -->
+                    <path d="M60 7 L64 16 L60 14 L56 16 Z" fill="currentColor" />
+                    <text x="60" y="66" text-anchor="middle" fill="currentColor"
+                        class="font-cinzel text-2xl font-bold tracking-wider">B &amp; T</text>
+                </svg>
+            </div>
+
+            <div class="space-y-1.5">
+                <p class="font-cinzel text-gold-bright text-[11px] tracking-[0.3em] uppercase">Royal Wedding Invitation
+                </p>
+                <h2 class="font-moul text-xl sm:text-2xl text-gold-metallic leading-relaxed">សិរីមង្គលអាពាហ៍ពិពាហ៍</h2>
+            </div>
+
+            <div class="py-1">
+                <h1 class="font-moul text-2xl sm:text-3xl text-white tracking-wide">ផល បូណា <span
+                        class="text-gold-bright font-script text-4xl mx-1">&amp;</span> ទ្រី ទិក</h1>
+                <div
+                    class="inline-flex items-center gap-2 mt-2.5 px-4 py-1 rounded-full bg-white/5 border border-gold-metallic/30 text-xs text-champagne/90">
+                    <i data-lucide="calendar" class="w-3.5 h-3.5 text-gold-bright"></i>
+                    <span id="cover-wedding-date">ថ្ងៃ ទី ខែ ឆ្នាំ២០២៧</span>
+                </div>
+            </div>
+
+            <!-- Personalized Guest Name Box -->
+            <div
+                class="bg-emerald-deep/90 backdrop-blur-md border border-gold-metallic/45 rounded-2xl p-4 mx-auto max-w-xs shadow-lg">
+                <p class="text-[11px] text-gold-bright/90 uppercase tracking-wider mb-1">សូមគោរពអញ្ជើញភ្ញៀវកិត្តិយស</p>
+                <p id="guest-name-display" class="text-lg font-bold text-white">ភ្ញៀវកិត្តិយស</p>
+            </div>
+
+            <div class="pt-1">
+                <button id="open-invitation-btn" type="button"
+                    class="gold-gradient-btn text-emerald-royal font-bold px-8 py-3.5 rounded-full inline-flex items-center gap-2.5 shadow-gold-glow text-sm sm:text-base cursor-pointer">
+                    <i data-lucide="mail-open" class="w-5 h-5"></i>
+                    <span>បើកធៀបអញ្ជើញ</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- =====================================================================
+         FLOATING MUSIC & KHQR GIFT QUICK ACTIONS
+    ====================================================================== -->
+    <div class="fixed top-4 right-4 md:top-20 md:right-6 z-40 flex flex-col gap-2.5">
+        <button id="music-toggle-btn" type="button" aria-label="Toggle Background Music" title="បើក/បិទ ភ្លេងប្រពៃណី"
+            class="relative w-11 h-11 rounded-full bg-emerald-royal text-gold-bright border border-gold-metallic/50 shadow-xl flex items-center justify-center hover:scale-105 transition cursor-pointer">
+            <i id="music-icon" data-lucide="volume-x" class="w-5 h-5"></i>
+        </button>
+        <button id="open-khqr-btn" type="button" aria-label="Digital Gift KHQR" title="ចំណងដៃអាពាហ៍ពិពាហ៍"
+            class="w-11 h-11 rounded-full bg-white text-emerald-royal border border-gold-metallic/60 shadow-xl flex items-center justify-center hover:scale-105 transition cursor-pointer">
+            <i data-lucide="gift" class="w-5 h-5 text-gold-bronze"></i>
+        </button>
+    </div>
+
+    <!-- =====================================================================
+         2A. DESKTOP TOP STICKY EMERALD BAR (របាររុករកលើកុំព្យូទ័រ)
+    ====================================================================== -->
+    <header class="hidden md:block sticky top-0 z-30 emerald-glass border-b border-gold-metallic/30 text-champagne">
+        <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+            <a href="#home" data-scroll-link class="flex items-center gap-3">
+                <span
+                    class="w-9 h-9 rounded-full border border-gold-metallic/60 flex items-center justify-center font-cinzel text-sm font-bold text-gold-bright">B&amp;T</span>
+                <div class="leading-tight">
+                    <span class="block font-moul text-xs text-gold-bright">បូណា &amp; ទិក</span>
+                    <span class="text-[11px] text-champagne/70">០០ . ០០ . ២០២៧</span>
+                </div>
+            </a>
+
+            <nav class="flex items-center gap-7 text-sm font-medium text-champagne/85">
+                <a href="#home" data-scroll-link data-nav-target="home"
+                    class="nav-item active py-1 hover:text-gold-bright transition">ទំព័រដើម</a>
+                <a href="#couple" data-scroll-link data-nav-target="couple"
+                    class="nav-item py-1 hover:text-gold-bright transition">គូស្វាមីភរិយា</a>
+                <a href="#schedule" data-scroll-link data-nav-target="schedule"
+                    class="nav-item py-1 hover:text-gold-bright transition">កម្មវិធីមង្គលការ</a>
+                <a href="#gallery" data-scroll-link data-nav-target="gallery"
+                    class="nav-item py-1 hover:text-gold-bright transition">កម្រងរូបភាព</a>
+                <a href="#location" data-scroll-link data-nav-target="location"
+                    class="nav-item py-1 hover:text-gold-bright transition">ទីតាំង</a>
+                <a href="#rsvp" data-scroll-link data-nav-target="rsvp"
+                    class="gold-gradient-btn text-emerald-royal px-5 py-2 rounded-full text-xs font-bold shadow-sm">
+                    ជូនពរ &amp; RSVP
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- =====================================================================
+         2B. MOBILE FLOATING EMERALD PILL NAVIGATION BAR (របាររុករកលើទូរស័ព្ទដៃ)
+    ====================================================================== -->
+    <nav aria-label="Mobile Navigation"
+        class="md:hidden fixed bottom-3 left-3 right-3 z-40 emerald-glass rounded-full shadow-2xl border border-gold-metallic/45 p-1.5">
+        <div class="grid grid-cols-5 items-center gap-1 text-center">
+            <a href="#home" data-scroll-link data-nav-target="home"
+                class="mobile-nav-item active flex flex-col items-center justify-center py-1.5 px-1 rounded-full text-champagne/80 transition">
+                <i data-lucide="home" class="w-4 h-4 mb-0.5"></i>
+                <span class="text-[10px] leading-none">ទំព័រដើម</span>
+            </a>
+            <a href="#couple" data-scroll-link data-nav-target="couple"
+                class="mobile-nav-item flex flex-col items-center justify-center py-1.5 px-1 rounded-full text-champagne/80 transition">
+                <i data-lucide="heart" class="w-4 h-4 mb-0.5"></i>
+                <span class="text-[10px] leading-none">គូស្នេហ៍</span>
+            </a>
+            <a href="#schedule" data-scroll-link data-nav-target="schedule"
+                class="mobile-nav-item flex flex-col items-center justify-center py-1.5 px-1 rounded-full text-champagne/80 transition">
+                <i data-lucide="calendar-clock" class="w-4 h-4 mb-0.5"></i>
+                <span class="text-[10px] leading-none">កម្មវិធី</span>
+            </a>
+            <a href="#location" data-scroll-link data-nav-target="location"
+                class="mobile-nav-item flex flex-col items-center justify-center py-1.5 px-1 rounded-full text-champagne/80 transition">
+                <i data-lucide="map-pin" class="w-4 h-4 mb-0.5"></i>
+                <span class="text-[10px] leading-none">ទីតាំង</span>
+            </a>
+            <a href="#rsvp" data-scroll-link data-nav-target="rsvp"
+                class="mobile-nav-item flex flex-col items-center justify-center py-1.5 px-1 rounded-full text-champagne/80 transition">
+                <i data-lucide="message-square-heart" class="w-4 h-4 mb-0.5"></i>
+                <span class="text-[10px] leading-none">ជូនពរ</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- =====================================================================
+         3. EDITORIAL SPLIT HERO SECTION WITH HEART PORTRAIT (ទំព័រដើម)
+    ====================================================================== -->
+    <section id="home"
+        class="relative min-h-screen flex items-center bg-royal-lattice pt-10 pb-16 md:py-20 px-4 overflow-hidden">
+        <!-- Decorative Top & Bottom Royal Borders -->
+        <div class="max-w-6xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
+
+            <!-- Left Editorial Typography Column (7 cols on Desktop) -->
+            <div class="lg:col-span-7 text-center lg:text-left space-y-6 order-2 lg:order-1">
+                <div data-aos="fade-up"
+                    class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-emerald-royal text-gold-bright text-xs font-medium shadow-sm">
+                    <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                    <span class="font-cinzel tracking-widest uppercase text-[11px]">Save The Date • 00.00.2027</span>
+                </div>
+
+                <div data-aos="fade-up" data-aos-delay="100" class="space-y-3">
+                    <h2 class="font-moul text-xl sm:text-2xl text-gold-bronze">សិរីមង្គលអាពាហ៍ពិពាហ៍</h2>
+                    <h1 class="font-moul text-3xl sm:text-4xl xl:text-5xl text-emerald-royal leading-snug">
+                        លោក ផល បូណា
+                        <span
+                            class="block sm:inline font-script text-4xl sm:text-5xl text-gold-metallic mx-2">&amp;</span>
+                        កញ្ញា ទ្រី ទិក
+                    </h1>
+                </div>
+
+                <p data-aos="fade-up" data-aos-delay="150"
+                    class="text-sm sm:text-base text-emerald-royal/85 max-w-xl mx-auto lg:mx-0 leading-relaxed">
+                    ថ្ងៃ កើត ខែមិគសិរ ឆ្នាំមមី អដ្ឋស័ក ព.ស.២៥៧០ ត្រូវនឹងថ្ងៃទី ខែ ឆ្នាំ២០២៧
+                    នៅគេហដ្ឋានខាងស្រី ស្ថិតនៅភូមិ ម្លិចគល់ ឃុំអណ្ដូងជីមុឺន ស្រុកទឹកឈូ ខេត្តកំពត។
+                </p>
+
+                <!-- Emerald & Gold Live Countdown Strip -->
+                <div data-aos="fade-up" data-aos-delay="200" class="pt-1">
+                    <div class="grid grid-cols-4 gap-2.5 sm:gap-4 max-w-md mx-auto lg:mx-0">
+                        <div
+                            class="bg-emerald-royal text-champagne rounded-2xl p-3 sm:p-4 text-center border border-gold-metallic/40 shadow-editorial">
+                            <span id="cd-days"
+                                class="block font-cinzel text-2xl sm:text-3xl font-bold text-gold-bright">00</span>
+                            <span class="text-[11px] text-champagne/80">ថ្ងៃ</span>
+                        </div>
+                        <div
+                            class="bg-emerald-royal text-champagne rounded-2xl p-3 sm:p-4 text-center border border-gold-metallic/40 shadow-editorial">
+                            <span id="cd-hours"
+                                class="block font-cinzel text-2xl sm:text-3xl font-bold text-gold-bright">00</span>
+                            <span class="text-[11px] text-champagne/80">ម៉ោង</span>
+                        </div>
+                        <div
+                            class="bg-emerald-royal text-champagne rounded-2xl p-3 sm:p-4 text-center border border-gold-metallic/40 shadow-editorial">
+                            <span id="cd-minutes"
+                                class="block font-cinzel text-2xl sm:text-3xl font-bold text-gold-bright">00</span>
+                            <span class="text-[11px] text-champagne/80">នាទី</span>
+                        </div>
+                        <div
+                            class="bg-emerald-royal text-champagne rounded-2xl p-3 sm:p-4 text-center border border-gold-metallic/40 shadow-editorial">
+                            <span id="cd-seconds"
+                                class="block font-cinzel text-2xl sm:text-3xl font-bold text-white">00</span>
+                            <span class="text-[11px] text-gold-bright">វិនាទី</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero CTA Buttons -->
+                <div data-aos="fade-up" data-aos-delay="250"
+                    class="flex flex-wrap items-center justify-center lg:justify-start gap-3 pt-2">
+                    <a href="#rsvp" data-scroll-link
+                        class="gold-gradient-btn text-emerald-royal font-bold px-6 py-3 rounded-full text-sm inline-flex items-center gap-2 shadow-gold-glow">
+                        <i data-lucide="send" class="w-4 h-4"></i>
+                        <span>បញ្ជាក់ការចូលរួម &amp; ជូនពរ</span>
+                    </a>
+                    <a href="#schedule" data-scroll-link
+                        class="px-6 py-3 rounded-full border border-emerald-royal/25 bg-white/80 text-emerald-royal font-semibold text-sm hover:border-gold-metallic transition inline-flex items-center gap-2">
+                        <i data-lucide="clock" class="w-4 h-4 text-gold-bronze"></i>
+                        <span>មើលកម្មវិធី</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right Golden Heart-Shaped Couple Portrait Column (5 cols on Desktop) -->
+            <div data-aos="zoom-in" data-aos-delay="150"
+                class="lg:col-span-5 flex flex-col items-center order-1 lg:order-2">
+                <div
+                    class="relative w-72 h-64 sm:w-80 sm:h-72 lg:w-96 lg:h-[21.5rem] drop-shadow-[0_20px_35px_rgba(11,37,32,0.22)] group">
+                    <!-- Decorative Rotating Halo Behind Heart -->
+                    <div
+                        class="absolute inset-4 rounded-full bg-gradient-to-tr from-gold-metallic/25 via-emerald-royal/10 to-gold-bright/25 blur-2xl -z-10">
+                    </div>
+
+                    <svg viewBox="0 0 240 218" class="w-full h-full overflow-visible" role="img"
+                        aria-label="គូស្វាមីភរិយា ផល បូណា និង ទ្រី ទិក">
+                        <defs>
+                            <clipPath id="hero-heart-clip">
+                                <path
+                                    d="M120 202 C120 202 18 140 18 70 C18 36 45 14 75 14 C96 14 112 26 120 41 C128 26 144 14 165 14 C195 14 222 36 222 70 C222 140 120 202 120 202 Z" />
+                            </clipPath>
+                            <linearGradient id="emerald-heart-vignette" x1="0" y1="0" x2="0" y2="1">
+                                <stop offset="55%" stop-color="#0B2520" stop-opacity="0" />
+                                <stop offset="100%" stop-color="#0B2520" stop-opacity="0.78" />
+                            </linearGradient>
+                        </defs>
+
+                        <!-- Outer Royal Emerald & Gold Backing Heart -->
+                        <path
+                            d="M120 211 C120 211 9 144 9 70 C9 30 40 5 75 5 C97 5 113 17 120 32 C127 17 143 5 165 5 C200 5 231 30 231 70 C231 144 120 211 120 211 Z"
+                            fill="#0B2520" stroke="#D4AF37" stroke-width="2.2" />
+
+                        <!-- Inner Dashed Gold Filigree Border -->
+                        <path
+                            d="M120 206.5 C120 206.5 13.5 142 13.5 70 C13.5 33 42.5 9.5 75 9.5 C96.5 9.5 112.5 21.5 120 36.5 C127.5 21.5 143.5 9.5 165 9.5 C197.5 9.5 226.5 33 226.5 70 C226.5 142 120 206.5 120 206.5 Z"
+                            fill="none" stroke="#E5C158" stroke-width="1" stroke-dasharray="3 3" />
+
+                        <!-- Couple Photo Clipped Inside Heart -->
+                        <g clip-path="url(#hero-heart-clip)">
+                            <image
+                                href="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80"
+                                x="10" y="6" width="220" height="204" preserveAspectRatio="xMidYMid slice"
+                                class="transition-transform duration-700 origin-center group-hover:scale-105" />
+                            <rect x="10" y="6" width="220" height="204" fill="url(#emerald-heart-vignette)" />
+                        </g>
+
+                        <!-- Inner Gold Rim -->
+                        <path
+                            d="M120 202 C120 202 18 140 18 70 C18 36 45 14 75 14 C96 14 112 26 120 41 C128 26 144 14 165 14 C195 14 222 36 222 70 C222 140 120 202 120 202 Z"
+                            fill="none" stroke="#E5C158" stroke-width="1.6" />
+                    </svg>
+                </div>
+
+                <!-- Royal Emerald & Gold Nameplate Pill -->
+                <div
+                    class="-mt-4 relative z-10 bg-emerald-royal border border-gold-metallic/70 px-7 py-1.5 rounded-full shadow-xl">
+                    <p class="font-script text-3xl sm:text-4xl text-gold-bright leading-none pt-0.5">Bona &amp; Tik</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =====================================================================
+         4. ROYAL PARENTS BANNER & COUPLE PROFILES (មាតាបិតា និង គូស្វាមីភរិយា)
+    ====================================================================== -->
+    <section id="couple" class="py-16 sm:py-24 px-4 bg-emerald-royal text-champagne relative overflow-hidden">
+        <!-- Subtle Golden Corner Accents -->
+        <div class="w-72 h-72 rounded-full bg-gold-metallic/10 blur-3xl absolute -top-20 -right-20 pointer-events-none">
+        </div>
+        <div
+            class="w-72 h-72 rounded-full bg-gold-metallic/10 blur-3xl absolute -bottom-20 -left-20 pointer-events-none">
+        </div>
+
+        <div class="max-w-5xl mx-auto space-y-14 relative z-10">
+            <!-- Formal Khmer Invitation Statement -->
+            <div data-aos="fade-up"
+                class="bg-emerald-deep/80 border border-gold-metallic/35 rounded-3xl p-6 sm:p-10 text-center space-y-6 shadow-2xl">
+                <div class="inline-flex items-center gap-3 text-gold-bright">
+                    <span class="h-px w-10 bg-gold-metallic/50"></span>
+                    <i data-lucide="crown" class="w-5 h-5"></i>
+                    <span class="h-px w-10 bg-gold-metallic/50"></span>
+                </div>
+
+                <h2 class="font-moul text-lg sm:text-2xl text-gold-bright">យើងខ្ញុំមានកិត្តិយសសូមគោរពអញ្ជើញ</h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5 pt-2">
+                    <div class="p-5 rounded-2xl bg-emerald-royal/80 border border-gold-metallic/25 space-y-1">
+                        <p class="text-xs text-gold-bright font-semibold tracking-wider uppercase mb-2">
+                            មាតាបិតាខាងកូនប្រុស (លោក ផល បូណា)</p>
+                        <p class="font-semibold text-base sm:text-lg text-white">លោក សេម វណ្ណា</p>
+                        <p class="font-semibold text-base sm:text-lg text-white">និង អ្នកស្រី សូ សាវ៉ាន់</p>
+                    </div>
+                    <div class="p-5 rounded-2xl bg-emerald-royal/80 border border-gold-metallic/25 space-y-1">
+                        <p class="text-xs text-gold-bright font-semibold tracking-wider uppercase mb-2">
+                            មាតាបិតាខាងកូនស្រី (កញ្ញា ទ្រី ទិក)</p>
+                        <p class="font-semibold text-base sm:text-lg text-white">លោក ទ្រី សុខា</p>
+                        <p class="font-semibold text-base sm:text-lg text-white">និង អ្នកស្រី លី បុប្ផា</p>
+                    </div>
+                </div>
+
+                <p class="max-w-2xl mx-auto text-sm sm:text-base text-champagne/85 leading-relaxed">
+                    សូមគោរពអញ្ជើញ សម្តេច ទ្រង់ ឯកឧត្តម អ្នកឧកញ៉ា លោកជំទាវ លោក លោកស្រី អ្នកនាងកញ្ញា អញ្ជើញចូលរួមជាអធិបតី
+                    និងជាភ្ញៀវកិត្តិយស ដើម្បីប្រសិទ្ធពរជ័យ សិរីសួស្តី ជ័យមង្គល ក្នុងពិធីរៀបអាពាហ៍ពិពាហ៍ កូនប្រុស-កូនស្រី
+                    របស់យើងខ្ញុំ។
+                </p>
+            </div>
+
+            <!-- Groom & Bride Editorial Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+                <!-- Groom Card -->
+                <div data-aos="fade-right"
+                    class="bg-emerald-deep/90 border border-gold-metallic/35 rounded-3xl p-7 text-center space-y-4 group hover:border-gold-bright transition">
+                    <div class="relative w-44 h-44 mx-auto">
+                        <div
+                            class="absolute inset-0 rounded-full border border-dashed border-gold-bright/60 animate-[spin_25s_linear_infinite]">
+                        </div>
+                        <div class="w-full h-full rounded-full p-2">
+                            <img src="b.jpg"
+                                onerror="this.src='https://placehold.co/400x400/0B2520/E5C158?text=Groom'"
+                                alt="កូនប្រុស លោក ផល បូណា"
+                                class="w-full h-full object-cover rounded-full border-2 border-gold-metallic group-hover:scale-105 transition duration-500">
+                        </div>
+                    </div>
+                    <div>
+                        <span
+                            class="text-xs font-semibold text-gold-bright uppercase tracking-widest">កូនប្រុសនាម</span>
+                        <h3 class="font-moul text-xl sm:text-2xl text-white mt-1">លោក ផល បូណា</h3>
+                        <p class="font-cinzel text-xs text-gold-metallic tracking-widest mt-1">PHAL BONA</p>
+                    </div>
+                    <p class="text-xs sm:text-sm text-champagne/80">
+                        កូនប្រុសច្បងរបស់ លោក សេម វណ្ណា និង អ្នកស្រី សូ សាវ៉ាន់
+                    </p>
+                </div>
+
+                <!-- Bride Card -->
+                <div data-aos="fade-left"
+                    class="bg-emerald-deep/90 border border-gold-metallic/35 rounded-3xl p-7 text-center space-y-4 group hover:border-gold-bright transition">
+                    <div class="relative w-44 h-44 mx-auto">
+                        <div
+                            class="absolute inset-0 rounded-full border border-dashed border-gold-bright/60 animate-[spin_25s_linear_infinite_reverse]">
+                        </div>
+                        <div class="w-full h-full rounded-full p-2">
+                            <img src="t.jpg"
+                                onerror="this.src='https://placehold.co/400x400/0B2520/E5C158?text=Bride'"
+                                alt="កូនស្រី កញ្ញា ទ្រី ទិក"
+                                class="w-full h-full object-cover rounded-full border-2 border-gold-metallic group-hover:scale-105 transition duration-500">
+                        </div>
+                    </div>
+                    <div>
+                        <span class="text-xs font-semibold text-gold-bright uppercase tracking-widest">កូនស្រីនាម</span>
+                        <h3 class="font-moul text-xl sm:text-2xl text-white mt-1">កញ្ញា ទ្រី ទិក</h3>
+                        <p class="font-cinzel text-xs text-gold-metallic tracking-widest mt-1">TRY TIK</p>
+                    </div>
+                    <p class="text-xs sm:text-sm text-champagne/80">
+                        កូនស្រីពៅរបស់ លោក ទ្រី សុខា និង អ្នកស្រី លី បុប្ផា
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =====================================================================
+         5. INTERACTIVE TABBED WEDDING SCHEDULE (កម្មវិធីមង្គលការ)
+    ====================================================================== -->
+    <section id="schedule" class="py-16 sm:py-24 px-4 bg-royal-lattice">
+        <div class="max-w-4xl mx-auto space-y-10">
+            <div data-aos="fade-up" class="text-center space-y-2">
+                <p class="font-cinzel text-gold-bronze text-xs tracking-[0.25em] uppercase font-semibold">Wedding
+                    Itinerary</p>
+                <h2 class="font-moul text-2xl sm:text-3xl text-emerald-royal">កម្មវិធីមង្គលការ</h2>
+                <p class="text-sm text-emerald-royal/75">ថ្ងៃ ទី ខែ ឆ្នាំ២០២៧</p>
+            </div>
+
+            <!-- Interactive Session Switcher Tabs -->
+            <div data-aos="fade-up" data-aos-delay="100" class="flex justify-center">
+                <div class="inline-flex p-1.5 rounded-full bg-emerald-royal/10 border border-gold-metallic/35">
+                    <button type="button" data-schedule-tab="morning"
+                        class="schedule-tab-btn px-5 sm:px-7 py-2.5 rounded-full text-xs sm:text-sm font-bold transition bg-emerald-royal text-gold-bright shadow-md cursor-pointer">
+                        ☀️ កម្មវិធីពេលព្រឹក
+                    </button>
+                    <button type="button" data-schedule-tab="evening"
+                        class="schedule-tab-btn px-5 sm:px-7 py-2.5 rounded-full text-xs sm:text-sm font-bold transition text-emerald-royal hover:text-gold-bronze cursor-pointer">
+                        ✨ កម្មវិធីពេលល្ងាច
+                    </button>
+                    <button type="button" data-schedule-tab="all"
+                        class="schedule-tab-btn hidden sm:inline-block px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold transition text-emerald-royal hover:text-gold-bronze cursor-pointer">
+                        ទាំងអស់
+                    </button>
+                </div>
+            </div>
+
+            <!-- Schedule Cards Container -->
+            <div class="grid grid-cols-1 gap-6">
+                <!-- Morning Panel -->
+                <div id="panel-morning" data-aos="fade-up"
+                    class="editorial-card rounded-3xl p-6 sm:p-8 shadow-editorial border-l-4 border-l-gold-metallic">
+                    <div class="flex items-center justify-between mb-6 pb-4 border-b border-gold-metallic/25">
+                        <div class="flex items-center gap-3">
+                            <div
+                                class="w-11 h-11 rounded-2xl bg-emerald-royal text-gold-bright flex items-center justify-center shrink-0">
+                                <i data-lucide="sun" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-moul text-base sm:text-lg text-emerald-royal">ពិធីតាមប្រពៃណីជាតិខ្មែរ
+                                    (ពេលព្រឹក)</h3>
+                                <p class="text-xs text-gold-bronze">ចាប់ពីម៉ោង ០៦:៣០ នាទីព្រឹក ដល់ ១២:០០ ថ្ងៃត្រង់</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="p-4 rounded-2xl bg-champagne border border-gold-metallic/25">
+                            <span
+                                class="inline-block text-xs font-bold text-emerald-royal bg-gold-bright/30 px-3 py-0.5 rounded-full mb-2">ម៉ោង
+                                ០៦:៣០ ព្រឹក</span>
+                            <h4 class="font-bold text-sm text-emerald-royal">ពិធីជួបជុំភ្ញៀវកិត្តិយស និងរៀបចំហែជំនូន
+                            </h4>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-champagne border border-gold-metallic/25">
+                            <span
+                                class="inline-block text-xs font-bold text-emerald-royal bg-gold-bright/30 px-3 py-0.5 rounded-full mb-2">ម៉ោង
+                                ០៧:០០ ព្រឹក</span>
+                            <h4 class="font-bold text-sm text-emerald-royal">ពិធីហែជំនូន (កំណត់) ចូលរោងជ័យ</h4>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-champagne border border-gold-metallic/25">
+                            <span
+                                class="inline-block text-xs font-bold text-emerald-royal bg-gold-bright/30 px-3 py-0.5 rounded-full mb-2">ម៉ោង
+                                ០៨:៣០ ព្រឹក</span>
+                            <h4 class="font-bold text-sm text-emerald-royal">ពិធីបំពាក់ចិញ្ចៀន និងពិសាភោជនាហារពេលព្រឹក
+                            </h4>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-champagne border border-gold-metallic/25">
+                            <span
+                                class="inline-block text-xs font-bold text-emerald-royal bg-gold-bright/30 px-3 py-0.5 rounded-full mb-2">ម៉ោង
+                                ០៩:៣០ ព្រឹក</span>
+                            <h4 class="font-bold text-sm text-emerald-royal">ពិធីកាត់សក់បង្កក់សិរី និងសំពះផ្ទឹមចងដៃ</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Evening Panel -->
+                <div id="panel-evening" data-aos="fade-up"
+                    class="hidden editorial-card rounded-3xl p-6 sm:p-8 shadow-editorial border-l-4 border-l-emerald-royal">
+                    <div class="flex items-center justify-between mb-6 pb-4 border-b border-gold-metallic/25">
+                        <div class="flex items-center gap-3">
+                            <div
+                                class="w-11 h-11 rounded-2xl bg-gold-metallic text-emerald-royal flex items-center justify-center shrink-0">
+                                <i data-lucide="sparkles" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-moul text-base sm:text-lg text-emerald-royal">ពិធីពិសាភោជនាហារពេលល្ងាច
+                                </h3>
+                                <p class="text-xs text-gold-bronze">ស្ថិតនៅគេហដ្ឋានខាងស្រី ស្ថិតនៅភូមិ ម្លិចគល់
+                                    ឃុំអណ្ដូងជីមុឺន ស្រុកទឹកឈូ ខេត្តកំពត។</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <div class="p-4 rounded-2xl bg-champagne border border-gold-metallic/25">
+                            <span
+                                class="inline-block text-xs font-bold text-gold-bright bg-emerald-royal px-3 py-0.5 rounded-full mb-2">ម៉ោង
+                                ០៥:០០ ល្ងាច</span>
+                            <h4 class="font-bold text-sm text-emerald-royal">ទទួលស្វាគមន៍ភ្ញៀវកិត្តិយសពិសាភោជនាហារ</h4>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-champagne border border-gold-metallic/25">
+                            <span
+                                class="inline-block text-xs font-bold text-gold-bright bg-emerald-royal px-3 py-0.5 rounded-full mb-2">ម៉ោង
+                                ០៦:៣០ ល្ងាច</span>
+                            <h4 class="font-bold text-sm text-emerald-royal">ពិធីបើកកម្មវិធី កាត់នំអាពាហ៍ពិពាហ៍ និងជូនពរ
+                            </h4>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-champagne border border-gold-metallic/25">
+                            <span
+                                class="inline-block text-xs font-bold text-gold-bright bg-emerald-royal px-3 py-0.5 rounded-full mb-2">ម៉ោង
+                                ០៨:០០ យប់</span>
+                            <h4 class="font-bold text-sm text-emerald-royal">រាំលេងកម្សាន្ត និងចប់កម្មវិធីដោយមេត្រីភាព
+                            </h4>
+                        </div>
+                    </div>
+
+                    <!-- Dress Code Banner -->
+                    <div
+                        class="mt-6 p-4 rounded-2xl bg-emerald-royal text-champagne flex flex-wrap items-center justify-between gap-3">
+                        <div>
+                            <p class="text-xs font-bold text-gold-bright">ពណ៌សម្លៀកបំពាក់ (Dress Code)</p>
+                            <p class="text-xs text-champagne/80 mt-0.5">បៃតងត្បូងមរកត ពណ៌មាស ឬពណ៌ភ្លុក</p>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="w-6 h-6 rounded-full bg-[#0B2520] border-2 border-gold-bright shadow"></span>
+                            <span class="w-6 h-6 rounded-full bg-[#D4AF37] border-2 border-white shadow"></span>
+                            <span class="w-6 h-6 rounded-full bg-[#FAF6F0] border-2 border-gold-metallic shadow"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =====================================================================
+         6. EDITORIAL MASONRY PHOTO GALLERY (កម្រងរូបភាពអនុស្សាវរីយ៍)
+    ====================================================================== -->
+    <section id="gallery" class="py-16 sm:py-24 px-4 bg-sand/60 border-y border-gold-metallic/20">
+        <div class="max-w-5xl mx-auto space-y-10">
+            <div data-aos="fade-up" class="text-center space-y-2">
+                <p class="font-cinzel text-gold-bronze text-xs tracking-[0.25em] uppercase font-semibold">Pre-Wedding
+                    Gallery</p>
+                <h2 class="font-moul text-2xl sm:text-3xl text-emerald-royal">កម្រងរូបភាពអនុស្សាវរីយ៍</h2>
+                <p class="text-xs sm:text-sm text-emerald-royal/75">ចុចលើរូបភាពដើម្បីពង្រីកមើលពេញអេក្រង់</p>
+            </div>
+
+            <!-- Staggered Editorial Grid -->
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-3.5 sm:gap-5">
+                <div data-aos="zoom-in" data-aos-delay="50"
+                    class="gallery-item group relative aspect-[3/4] rounded-3xl overflow-hidden shadow-editorial border border-gold-metallic/30 cursor-pointer bg-emerald-royal/10">
+                    <img src="we1.jpg"
+                        onerror="this.src='https://placehold.co/600x800/0B2520/E5C158?text=Moment+1'"
+                        alt="Pre-wedding 1"
+                        class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                    <div
+                        class="absolute inset-0 bg-emerald-royal/0 group-hover:bg-emerald-royal/35 transition flex items-center justify-center">
+                        <span
+                            class="w-10 h-10 rounded-full bg-gold-bright text-emerald-royal flex items-center justify-center opacity-0 group-hover:opacity-100 transition shadow-lg">
+                            <i data-lucide="maximize-2" class="w-5 h-5"></i>
+                        </span>
+                    </div>
+                </div>
+
+                <div data-aos="zoom-in" data-aos-delay="100"
+                    class="gallery-item group relative aspect-[3/4] md:translate-y-6 rounded-3xl overflow-hidden shadow-editorial border border-gold-metallic/30 cursor-pointer bg-emerald-royal/10">
+                    <img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?auto=format&fit=crop&w=800&q=80"
+                        onerror="this.src='https://placehold.co/600x800/0B2520/E5C158?text=Moment+2'"
+                        alt="Pre-wedding 2"
+                        class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                    <div
+                        class="absolute inset-0 bg-emerald-royal/0 group-hover:bg-emerald-royal/35 transition flex items-center justify-center">
+                        <span
+                            class="w-10 h-10 rounded-full bg-gold-bright text-emerald-royal flex items-center justify-center opacity-0 group-hover:opacity-100 transition shadow-lg">
+                            <i data-lucide="maximize-2" class="w-5 h-5"></i>
+                        </span>
+                    </div>
+                </div>
+
+                <div data-aos="zoom-in" data-aos-delay="150"
+                    class="gallery-item group relative aspect-[3/4] rounded-3xl overflow-hidden shadow-editorial border border-gold-metallic/30 cursor-pointer bg-emerald-royal/10">
+                    <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=800&q=80"
+                        onerror="this.src='https://placehold.co/600x800/0B2520/E5C158?text=Moment+3'"
+                        alt="Pre-wedding 3"
+                        class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                    <div
+                        class="absolute inset-0 bg-emerald-royal/0 group-hover:bg-emerald-royal/35 transition flex items-center justify-center">
+                        <span
+                            class="w-10 h-10 rounded-full bg-gold-bright text-emerald-royal flex items-center justify-center opacity-0 group-hover:opacity-100 transition shadow-lg">
+                            <i data-lucide="maximize-2" class="w-5 h-5"></i>
+                        </span>
+                    </div>
+                </div>
+
+                <div data-aos="zoom-in" data-aos-delay="200"
+                    class="gallery-item group relative aspect-[3/4] rounded-3xl overflow-hidden shadow-editorial border border-gold-metallic/30 cursor-pointer bg-emerald-royal/10">
+                    <img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=800&q=80"
+                        onerror="this.src='https://placehold.co/600x800/0B2520/E5C158?text=Moment+4'"
+                        alt="Pre-wedding 4"
+                        class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                    <div
+                        class="absolute inset-0 bg-emerald-royal/0 group-hover:bg-emerald-royal/35 transition flex items-center justify-center">
+                        <span
+                            class="w-10 h-10 rounded-full bg-gold-bright text-emerald-royal flex items-center justify-center opacity-0 group-hover:opacity-100 transition shadow-lg">
+                            <i data-lucide="maximize-2" class="w-5 h-5"></i>
+                        </span>
+                    </div>
+                </div>
+
+                <div data-aos="zoom-in" data-aos-delay="250"
+                    class="gallery-item group relative aspect-[3/4] md:translate-y-6 rounded-3xl overflow-hidden shadow-editorial border border-gold-metallic/30 cursor-pointer bg-emerald-royal/10">
+                    <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=800&q=80"
+                        onerror="this.src='https://placehold.co/600x800/0B2520/E5C158?text=Moment+5'"
+                        alt="Pre-wedding 5"
+                        class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                    <div
+                        class="absolute inset-0 bg-emerald-royal/0 group-hover:bg-emerald-royal/35 transition flex items-center justify-center">
+                        <span
+                            class="w-10 h-10 rounded-full bg-gold-bright text-emerald-royal flex items-center justify-center opacity-0 group-hover:opacity-100 transition shadow-lg">
+                            <i data-lucide="maximize-2" class="w-5 h-5"></i>
+                        </span>
+                    </div>
+                </div>
+
+                <div data-aos="zoom-in" data-aos-delay="300"
+                    class="gallery-item group relative aspect-[3/4] rounded-3xl overflow-hidden shadow-editorial border border-gold-metallic/30 cursor-pointer bg-emerald-royal/10">
+                    <img src="https://images.unsplash.com/photo-1537633552985-df8429e8048b?auto=format&fit=crop&w=800&q=80"
+                        onerror="this.src='https://placehold.co/600x800/0B2520/E5C158?text=Moment+6'"
+                        alt="Pre-wedding 6"
+                        class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                    <div
+                        class="absolute inset-0 bg-emerald-royal/0 group-hover:bg-emerald-royal/35 transition flex items-center justify-center">
+                        <span
+                            class="w-10 h-10 rounded-full bg-gold-bright text-emerald-royal flex items-center justify-center opacity-0 group-hover:opacity-100 transition shadow-lg">
+                            <i data-lucide="maximize-2" class="w-5 h-5"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =====================================================================
+         7. LOCATION & MAP (ទីតាំងប្រារព្ធពិធី)
+    ====================================================================== -->
+    <section id="location" class="py-16 sm:py-24 px-4 bg-champagne">
+        <div class="max-w-5xl mx-auto space-y-10">
+            <div data-aos="fade-up" class="text-center space-y-2">
+                <p class="font-cinzel text-gold-bronze text-xs tracking-[0.25em] uppercase font-semibold">Wedding Venue
+                </p>
+                <h2 class="font-moul text-2xl sm:text-3xl text-emerald-royal">ទីតាំងប្រារព្ធពិធី</h2>
+            </div>
+
+            <div data-aos="fade-up" data-aos-delay="100"
+                class="editorial-card rounded-3xl overflow-hidden shadow-editorial grid grid-cols-1 lg:grid-cols-12">
+                <!-- Venue Details (5 cols) -->
+                <div
+                    class="lg:col-span-5 p-6 sm:p-8 bg-emerald-royal text-champagne flex flex-col justify-between space-y-6">
+                    <div class="space-y-4">
+                        <div
+                            class="w-12 h-12 rounded-2xl bg-gold-metallic/20 border border-gold-metallic/50 text-gold-bright flex items-center justify-center">
+                            <i data-lucide="map-pin" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="font-moul text-lg sm:text-xl text-gold-bright leading-relaxed">ភូមិ ម្លិចគល់
+                            ឃុំអណ្ដូងជីមុឺន ស្រុកទឹកឈូ ខេត្តកំពត</h3>
+                        <p class="text-sm text-champagne/80 leading-relaxed">
+                            ពិធីពិសាភោជនាហារពេលល្ងាច ចាប់ពីម៉ោង ០៥:០០
+                            នាទីល្ងាចតទៅ។
+                        </p>
+                    </div>
+
+                    <div class="pt-2">
+                        <a href="https://maps.app.goo.gl/8dUKcvvTyhZcU8C47" target="_blank" rel="noopener noreferrer"
+                            class="w-full gold-gradient-btn text-emerald-royal font-bold px-6 py-3.5 rounded-2xl inline-flex items-center justify-center gap-2 text-sm shadow-gold-glow">
+                            <i data-lucide="navigation" class="w-4 h-4"></i>
+                            <span>បើកក្នុង Google Maps</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Interactive Map Embed (7 cols) -->
+                <div class="lg:col-span-7 w-full h-72 sm:h-96">
+                    <iframe titlt="គេហដ្ឋានខាងស្រី"
+                        src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3346.375017636447!2d104.16365963667916!3d10.691075640001515!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTDCsDQxJzI3LjkiTiAxMDTCsDA5JzU1LjgiRQ!5e0!3m2!1sen!2skh!4v1794572506730!5m2!1sen!2skh"
+                        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =====================================================================
+         8. RSVP & DIGITAL WISHES GUESTBOOK + TELEGRAM BOT (ការឆ្លើយតប និង សារជូនពរ)
+    ====================================================================== -->
+    <section id="rsvp" class="py-16 sm:py-24 px-4 bg-royal-lattice border-t border-gold-metallic/25">
+        <div class="max-w-5xl mx-auto space-y-10">
+            <div data-aos="fade-up" class="text-center space-y-2">
+                <p class="font-cinzel text-gold-bronze text-xs tracking-[0.25em] uppercase font-semibold">RSVP &amp;
+                    Best Wishes</p>
+                <h2 class="font-moul text-2xl sm:text-3xl text-emerald-royal">ការឆ្លើយតប និង សារជូនពរ</h2>
+                <p class="text-sm text-emerald-royal/80">សូមបញ្ជាក់ការចូលរួម និងផ្ញើពាក្យជូនពរដល់គូស្វាមីភរិយាថ្មី</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-6 gap-8 items-start">
+                <!-- RSVP Form (5 cols) -->
+                <div data-aos="fade-right" class="lg:col-span-6 editorial-card rounded-3xl p-6 sm:p-8 shadow-editorial">
+                    <form id="rsvp-form" class="space-y-4">
+                        <div>
+                            <label for="guest-name"
+                                class="block text-xs font-bold text-emerald-royal mb-1.5">ឈ្មោះភ្ញៀវកិត្តិយស *</label>
+                            <input type="text" id="guest-name" required placeholder="បញ្ចូលឈ្មោះរបស់លោកអ្នក..."
+                                class="w-full px-4 py-3 rounded-xl bg-champagne/70 border border-gold-metallic/40 text-sm focus:outline-none focus:border-emerald-royal">
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div>
+                                <label for="attendance-status"
+                                    class="block text-xs font-bold text-emerald-royal mb-1.5">ការបញ្ជាក់ការចូលរួម</label>
+                                <select id="attendance-status"
+                                    class="w-full px-3 py-3 rounded-xl bg-champagne/70 border border-gold-metallic/40 text-sm focus:outline-none focus:border-emerald-royal">
+                                    <option value="ចូលរួម">នឹងអញ្ជើញចូលរួម</option>
+                                    <option value="មិនទាន់ប្រាកដ">មិនទាន់ប្រាកដ</option>
+                                    <option value="មិនអាចចូលរួម">មិនអាចចូលរួមបាន</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="guest-count"
+                                    class="block text-xs font-bold text-emerald-royal mb-1.5">ចំនួនភ្ញៀវចូលរួម</label>
+                                <select id="guest-count"
+                                    class="w-full px-3 py-3 rounded-xl bg-champagne/70 border border-gold-metallic/40 text-sm focus:outline-none focus:border-emerald-royal">
+                                    <option value="១ នាក់">១ នាក់</option>
+                                    <option value="២ នាក់" selected>២ នាក់</option>
+                                    <option value="៣ នាក់">៣ នាក់</option>
+                                    <option value="៤+ នាក់">៤+ នាក់</option>
+                                    <option value="ជាគ្រួសារ">ជាគ្រួសារ</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="guest-wish"
+                                class="block text-xs font-bold text-emerald-royal mb-1.5">ពាក្យជូនពរដល់គូស្វាមីភរិយាថ្មី
+                                *</label>
+                            <textarea id="guest-wish" rows="3" required
+                                placeholder="សរសេរពាក្យជូនពរដល់កូនកំលោះ និងកូនក្រមុំ..."
+                                class="w-full px-4 py-3 rounded-xl bg-champagne/70 border border-gold-metallic/40 text-sm focus:outline-none focus:border-emerald-royal"></textarea>
+                        </div>
+
+                        <button type="submit" id="rsvp-submit-btn"
+                            class="w-full gold-gradient-btn text-emerald-royal font-bold py-3.5 rounded-xl shadow-gold-glow flex items-center justify-center gap-2 text-sm cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed">
+                            <i data-lucide="send" class="w-4 h-4"></i>
+                            <span>ផ្ញើការឆ្លើយតប និងពាក្យជូនពរ</span>
+                        </button>
+                    </form>
+
+                    <!-- Digital Gift & Telegram Setup Trigger -->
+                    <div
+                        class="mt-5 pt-4 border-t border-gold-metallic/25 flex flex-wrap items-center justify-between gap-2">
+                        <button type="button" id="rsvp-khqr-btn"
+                            class="text-xs font-bold text-gold-bronze hover:text-emerald-royal inline-flex items-center gap-1.5 transition cursor-pointer">
+                            <i data-lucide="qr-code" class="w-4 h-4"></i>
+                            <span>ផ្ញើចំណងដៃ KHQR</span>
+                        </button>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =====================================================================
+         FOOTER (ផ្នែកខាងក្រោម)
+    ====================================================================== -->
+    <footer class="bg-emerald-royal text-champagne py-14 px-4 text-center space-y-4 border-t border-gold-metallic/30">
+        <p class="font-script text-4xl sm:text-5xl text-gold-bright">Bona &amp; Tik</p>
+        <p class="font-moul text-sm text-gold-metallic">ផល បូណា &amp; ទ្រី ទិក •
+            សូមអរគុណចំពោះវត្តមានដ៏ឧត្តុង្គឧត្តមរបស់លោកអ្នក</p>
+        <p class="text-xs text-champagne/65 pt-2">០០ ខែ ឆ្នាំ២០២៧ • កំពត</p>
+    </footer>
+
+    <!-- =====================================================================
+         LIGHTBOX MODAL (សម្រាប់មើលរូបភាពពេញអេក្រង់)
+    ====================================================================== -->
+    <div id="lightbox-modal"
+        class="fixed inset-0 z-50 hidden bg-emerald-royal/95 backdrop-blur-md flex items-center justify-center p-4">
+        <button id="close-lightbox" type="button" aria-label="Close Lightbox"
+            class="absolute top-5 right-5 w-10 h-10 rounded-full bg-gold-metallic text-emerald-royal flex items-center justify-center hover:scale-105 transition cursor-pointer">
+            <i data-lucide="x" class="w-6 h-6"></i>
+        </button>
+        <img id="lightbox-img" src="" alt="Full Screen Wedding Photo"
+            class="max-h-[85vh] max-w-full rounded-3xl border-2 border-gold-metallic/60 shadow-2xl object-contain">
+    </div>
+
+    <!-- =====================================================================
+         KHQR DIGITAL GIFT MODAL (សម្រាប់ចំណងដៃអាពាហ៍ពិពាហ៍)
+    ====================================================================== -->
+    <div id="khqr-modal"
+        class="fixed inset-0 z-50 hidden bg-emerald-royal/85 backdrop-blur-sm flex items-center justify-center p-4">
+        <div
+            class="bg-champagne rounded-3xl max-w-sm w-full p-6 text-center space-y-5 relative border border-gold-metallic/50 shadow-2xl">
+            <button id="close-khqr" type="button" aria-label="Close KHQR Modal"
+                class="absolute top-4 right-4 w-8 h-8 rounded-full bg-sand text-emerald-royal flex items-center justify-center hover:bg-emerald-royal hover:text-gold-bright transition cursor-pointer">
+                <i data-lucide="x" class="w-4 h-4"></i>
+            </button>
+
+            <div class="space-y-1">
+                <span class="font-cinzel text-xs font-bold text-gold-bronze uppercase tracking-widest">Wedding
+                    Gift</span>
+                <h3 class="font-moul text-lg text-emerald-royal">ចំណងដៃអាពាហ៍ពិពាហ៍</h3>
+                <p class="text-xs text-emerald-royal/75">លោកអ្នកអាចស្កេន KHQR ខាងក្រោមដើម្បីផ្ញើចំណងដៃ</p>
+            </div>
+
+            <!-- Stylized KHQR Card -->
+            <div class="bg-white rounded-2xl p-4 border-2 border-red-600/80 shadow-editorial mx-auto max-w-[230px]">
+                <div
+                    class="bg-[#E1232E] text-white font-bold text-sm py-1.5 rounded-t-xl -mx-4 -mt-4 mb-3 tracking-wider">
+                    KHQR
+                </div>
+                <p class="text-xs font-bold text-gray-800 text-left">PHAL BONA &amp; TRY TIK</p>
+                <p class="text-[11px] text-gray-500 text-left mb-2">USD / KHR • ACELEDA Bank</p>
+                <div
+                    class="aspect-square bg-gray-50 rounded-xl p-3 flex items-center justify-center border border-gray-200">
+                    <img src="khqr.jpg">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- =====================================================================
+         TELEGRAM BOT SETTINGS MODAL (ផ្ទាំងកំណត់ការភ្ជាប់ Telegram Bot)
+    ====================================================================== -->
+    <div id="tg-settings-modal"
+        class="fixed inset-0 z-50 hidden bg-emerald-royal/85 backdrop-blur-sm flex items-center justify-center p-4">
+        <div
+            class="bg-champagne rounded-3xl max-w-md w-full p-6 space-y-5 relative border border-gold-metallic/50 shadow-2xl">
+            <button id="close-tg-settings" type="button" aria-label="Close Telegram Settings"
+                class="absolute top-4 right-4 w-8 h-8 rounded-full bg-sand text-emerald-royal flex items-center justify-center hover:bg-emerald-royal hover:text-gold-bright transition cursor-pointer">
+                <i data-lucide="x" class="w-4 h-4"></i>
+            </button>
+
+            <div class="space-y-1 text-center">
+                <div
+                    class="w-11 h-11 rounded-2xl bg-[#229ED9]/15 text-[#229ED9] mx-auto flex items-center justify-center mb-2">
+                    <i data-lucide="bot" class="w-6 h-6"></i>
+                </div>
+                <h3 class="font-moul text-base text-emerald-royal">ការភ្ជាប់ Telegram Bot</h3>
+                <p class="text-xs text-emerald-royal/75">បញ្ចូល Bot Token និង Chat ID ដើម្បីទទួលសារ RSVP &amp;
+                    ជូនពរភ្លាមៗ</p>
+            </div>
+
+            <form id="tg-settings-form" class="space-y-3.5 text-left">
+                <div>
+                    <label for="tg-bot-token" class="block text-xs font-bold text-emerald-royal mb-1">Telegram Bot Token
+                        (ពី @BotFather)</label>
+                    <input type="text" id="tg-bot-token"
+                        placeholder="ឧទាហរណ៍៖ 7123456789:AAHdqTcvCH1vGWJxfSeofSAs0K5PALDsaw"
+                        class="w-full px-3.5 py-2.5 rounded-xl bg-white border border-gold-metallic/40 text-xs font-mono focus:outline-none focus:border-emerald-royal">
+                </div>
+                <div>
+                    <label for="tg-chat-id" class="block text-xs font-bold text-emerald-royal mb-1">Telegram Chat ID /
+                        Group ID</label>
+                    <input type="text" id="tg-chat-id" placeholder="ឧទាហរណ៍៖ 123456789 ឬ -1001234567890"
+                        class="w-full px-3.5 py-2.5 rounded-xl bg-white border border-gold-metallic/40 text-xs font-mono focus:outline-none focus:border-emerald-royal">
+                </div>
+
+                <div class="flex items-center gap-2 pt-2">
+                    <button type="button" id="test-tg-btn"
+                        class="flex-1 py-2.5 px-3 rounded-xl border border-gold-metallic text-emerald-royal font-bold text-xs hover:bg-sand transition cursor-pointer">
+                        សាកល្បងផ្ញើសារ
+                    </button>
+                    <button type="submit"
+                        class="flex-1 gold-gradient-btn text-emerald-royal font-bold py-2.5 px-3 rounded-xl text-xs shadow-sm cursor-pointer">
+                        រក្សាទុកការកំណត់
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- =====================================================================
+         TOAST NOTIFICATION (សារជូនដំណឹង)
+    ====================================================================== -->
+    <div id="toast-box"
+        class="fixed bottom-20 md:bottom-6 left-1/2 -translate-x-1/2 z-50 pointer-events-none opacity-0 transition-all duration-300 translate-y-3 max-w-[92vw]">
+        <div
+            class="bg-emerald-royal text-champagne px-5 py-3 rounded-full shadow-2xl border border-gold-metallic/60 flex items-center gap-2.5 text-xs sm:text-sm">
+            <i data-lucide="check-circle-2" class="w-4 h-4 text-gold-bright shrink-0"></i>
+            <span id="toast-message">ប្រតិបត្តិការជោគជ័យ!</span>
+        </div>
+    </div>
+
+    <!-- =====================================================================
+         SCRIPTS: AOS, LUCIDE, AUDIO SYNTH, SCHEDULE TABS, COUNTDOWN, TELEGRAM
+    ====================================================================== -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // =====================================================================
+        // TELEGRAM BOT & WEDDING CONFIGURATION
+        // =====================================================================
+        const DEFAULT_TELEGRAM_BOT_TOKEN = "YOUR_TELEGRAM_BOT_TOKEN"; // ឧទាហរណ៍: "7123456789:AAH..."
+        const DEFAULT_TELEGRAM_CHAT_ID = "YOUR_TELEGRAM_CHAT_ID";     // ឧទាហរណ៍: "123456789" ឬ "-100..."
+        const WEDDING_TARGET_DATE = "2026-12-20T07:00:00+07:00";
+
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
+            }
+
+            if (typeof AOS !== 'undefined') {
+                AOS.init({
+                    duration: 800,
+                    once: true,
+                    offset: 50,
+                    easing: 'ease-out-cubic'
+                });
+            } else {
+                document.documentElement.classList.add('aos-fallback');
+            }
+
+            // -----------------------------------------------------------------
+            // 1. Toast Notification Helper
+            // -----------------------------------------------------------------
+            const toastBox = document.getElementById('toast-box');
+            const toastMessage = document.getElementById('toast-message');
+            let toastTimeout = null;
+
+            function showToast(msg) {
+                if (!toastBox || !toastMessage) return;
+                toastMessage.textContent = msg;
+                toastBox.classList.remove('opacity-0', 'translate-y-3');
+                toastBox.classList.add('opacity-100', 'translate-y-0');
+
+                if (toastTimeout) clearTimeout(toastTimeout);
+                toastTimeout = setTimeout(() => {
+                    toastBox.classList.remove('opacity-100', 'translate-y-0');
+                    toastBox.classList.add('opacity-0', 'translate-y-3');
+                }, 3800);
+            }
+
+            // -----------------------------------------------------------------
+            // 2. Personalized Guest Name via URL Query (?to=... or ?guest=...)
+            // -----------------------------------------------------------------
+            const guestNameDisplay = document.getElementById('guest-name-display');
+            const guestNameInput = document.getElementById('guest-name');
+
+            try {
+                const params = new URLSearchParams(window.location.search);
+                const rawGuest = params.get('to') || params.get('guest');
+                if (rawGuest && rawGuest.trim() !== '') {
+                    const cleanGuest = rawGuest.trim().slice(0, 80);
+                    if (guestNameDisplay) guestNameDisplay.textContent = cleanGuest;
+                    if (guestNameInput) guestNameInput.value = cleanGuest;
+                }
+            } catch (err) {
+                console.warn('URL parameter parsing warning:', err);
+            }
+
+            // -----------------------------------------------------------------
+            // 3. Gentle Traditional Pentatonic Melody (Web Audio API)
+            // -----------------------------------------------------------------
+            let audioCtx = null;
+            let isMusicPlaying = false;
+            let melodyTimer = null;
+            const musicToggleBtn = document.getElementById('music-toggle-btn');
+
+            function updateMusicButtonUI(playing) {
+                if (!musicToggleBtn) return;
+                if (playing) {
+                    musicToggleBtn.classList.add('music-pulse');
+                    musicToggleBtn.innerHTML = '<i data-lucide="volume-2" class="w-5 h-5"></i>';
+                } else {
+                    musicToggleBtn.classList.remove('music-pulse');
+                    musicToggleBtn.innerHTML = '<i data-lucide="volume-x" class="w-5 h-5"></i>';
+                }
+                if (typeof lucide !== 'undefined') lucide.createIcons();
+            }
+
+            async function startAmbientMusic() {
+                if (isMusicPlaying) return;
+                try {
+                    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+                    if (!AudioContextClass) return;
+
+                    if (!audioCtx) {
+                        audioCtx = new AudioContextClass();
+                    }
+                    if (audioCtx.state === 'suspended') {
+                        await audioCtx.resume();
+                    }
+
+                    const notes = [523.25, 587.33, 659.25, 783.99, 880.0, 1046.5, 880.0, 783.99, 659.25, 587.33];
+                    let step = 0;
+
+                    const playPluck = () => {
+                        if (!isMusicPlaying || !audioCtx) return;
+                        const now = audioCtx.currentTime;
+                        const osc = audioCtx.createOscillator();
+                        const gain = audioCtx.createGain();
+
+                        osc.type = 'sine';
+                        osc.frequency.setValueAtTime(notes[step % notes.length], now);
+
+                        gain.gain.setValueAtTime(0.0001, now);
+                        gain.gain.exponentialRampToValueAtTime(0.045, now + 0.08);
+                        gain.gain.exponentialRampToValueAtTime(0.0001, now + 1.35);
+
+                        osc.connect(gain);
+                        gain.connect(audioCtx.destination);
+
+                        osc.start(now);
+                        osc.stop(now + 1.4);
+                        step++;
+                    };
+
+                    isMusicPlaying = true;
+                    updateMusicButtonUI(true);
+                    playPluck();
+                    melodyTimer = setInterval(playPluck, 1100);
+                } catch (err) {
+                    isMusicPlaying = false;
+                    updateMusicButtonUI(false);
+                }
+            }
+
+            function stopAmbientMusic() {
+                isMusicPlaying = false;
+                if (melodyTimer) {
+                    clearInterval(melodyTimer);
+                    melodyTimer = null;
+                }
+                updateMusicButtonUI(false);
+            }
+
+            if (musicToggleBtn) {
+                musicToggleBtn.addEventListener('click', () => {
+                    if (isMusicPlaying) {
+                        stopAmbientMusic();
+                    } else {
+                        startAmbientMusic();
+                    }
+                });
+            }
+
+            // -----------------------------------------------------------------
+            // 4. Welcome Cover Open Handler + AOS Refresh
+            // -----------------------------------------------------------------
+            const welcomeCover = document.getElementById('welcome-cover');
+            const openInvitationBtn = document.getElementById('open-invitation-btn');
+
+            function openInvitation() {
+                if (welcomeCover) {
+                    welcomeCover.classList.add('opened');
+                }
+                document.body.classList.remove('cover-locked');
+                startAmbientMusic();
+
+                setTimeout(() => {
+                    if (typeof AOS !== 'undefined') {
+                        AOS.refreshHard();
+                    }
+                }, 350);
+            }
+
+            if (openInvitationBtn) {
+                openInvitationBtn.addEventListener('click', openInvitation);
+            }
+
+            // -----------------------------------------------------------------
+            // 5. Interactive Schedule Session Tabs (ពេលព្រឹក / ពេលល្ងាច / ទាំងអស់)
+            // -----------------------------------------------------------------
+            const scheduleTabBtns = document.querySelectorAll('.schedule-tab-btn');
+            const panelMorning = document.getElementById('panel-morning');
+            const panelEvening = document.getElementById('panel-evening');
+
+            scheduleTabBtns.forEach((btn) => {
+                btn.addEventListener('click', () => {
+                    const target = btn.getAttribute('data-schedule-tab');
+
+                    scheduleTabBtns.forEach((b) => {
+                        b.classList.remove('bg-emerald-royal', 'text-gold-bright', 'shadow-md');
+                        b.classList.add('text-emerald-royal');
+                    });
+                    btn.classList.add('bg-emerald-royal', 'text-gold-bright', 'shadow-md');
+                    btn.classList.remove('text-emerald-royal');
+
+                    if (target === 'morning') {
+                        panelMorning.classList.remove('hidden');
+                        panelEvening.classList.add('hidden');
+                    } else if (target === 'evening') {
+                        panelMorning.classList.add('hidden');
+                        panelEvening.classList.remove('hidden');
+                    } else {
+                        panelMorning.classList.remove('hidden');
+                        panelEvening.classList.remove('hidden');
+                    }
+                });
+            });
+
+            // -----------------------------------------------------------------
+            // 6. Real-time Countdown Timer
+            // -----------------------------------------------------------------
+            const cdDays = document.getElementById('cd-days');
+            const cdHours = document.getElementById('cd-hours');
+            const cdMinutes = document.getElementById('cd-minutes');
+            const cdSeconds = document.getElementById('cd-seconds');
+
+            let targetTimestamp = new Date(WEDDING_TARGET_DATE).getTime();
+            if (isNaN(targetTimestamp) || targetTimestamp <= Date.now()) {
+                targetTimestamp = Date.now() + 30 * 24 * 60 * 60 * 1000;
+            }
+
+            function updateCountdown() {
+                const now = Date.now();
+                const diff = Math.max(0, targetTimestamp - now);
+
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+                const minutes = Math.floor((diff / 1000 / 60) % 60);
+                const seconds = Math.floor((diff / 1000) % 60);
+
+                if (cdDays) cdDays.textContent = String(days).padStart(2, '0');
+                if (cdHours) cdHours.textContent = String(hours).padStart(2, '0');
+                if (cdMinutes) cdMinutes.textContent = String(minutes).padStart(2, '0');
+                if (cdSeconds) cdSeconds.textContent = String(seconds).padStart(2, '0');
+            }
+
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+
+            // -----------------------------------------------------------------
+            // 7. Smooth Scrolling & Scroll Spy (Desktop & Mobile Pill Nav)
+            // -----------------------------------------------------------------
+            const scrollLinks = document.querySelectorAll('[data-scroll-link]');
+            const desktopNavItems = document.querySelectorAll('.nav-item[data-nav-target]');
+            const mobileNavItems = document.querySelectorAll('.mobile-nav-item[data-nav-target]');
+            const sectionIds = ['home', 'couple', 'schedule', 'gallery', 'location', 'rsvp'];
+
+            function setActiveNav(activeId) {
+                desktopNavItems.forEach((item) => {
+                    const target = item.getAttribute('data-nav-target');
+                    item.classList.toggle('active', target === activeId);
+                });
+
+                const mobileEffective = activeId === 'gallery' ? 'schedule' : activeId;
+                mobileNavItems.forEach((item) => {
+                    const target = item.getAttribute('data-nav-target');
+                    item.classList.toggle('active', target === mobileEffective);
+                });
+            }
+
+            scrollLinks.forEach((link) => {
+                link.addEventListener('click', (e) => {
+                    const href = link.getAttribute('href');
+                    if (href && href.startsWith('#')) {
+                        const targetEl = document.querySelector(href);
+                        if (targetEl) {
+                            e.preventDefault();
+                            const offset = window.innerWidth >= 768 ? 64 : 12;
+                            const topPos = targetEl.getBoundingClientRect().top + window.pageYOffset - offset;
+                            window.scrollTo({ top: Math.max(0, topPos), behavior: 'smooth' });
+                            setActiveNav(href.substring(1));
+                        }
+                    }
+                });
+            });
+
+            function handleScrollSpy() {
+                const scrollPosition = window.scrollY + 180;
+                let currentSection = 'home';
+
+                for (const id of sectionIds) {
+                    const el = document.getElementById(id);
+                    if (el && el.offsetTop <= scrollPosition) {
+                        currentSection = id;
+                    }
+                }
+
+                if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 60) {
+                    currentSection = 'rsvp';
+                }
+
+                setActiveNav(currentSection);
+            }
+
+            window.addEventListener('scroll', handleScrollSpy, { passive: true });
+            handleScrollSpy();
+
+            // -----------------------------------------------------------------
+            // 8. Lightbox Gallery & KHQR Gift Modal
+            // -----------------------------------------------------------------
+            const lightboxModal = document.getElementById('lightbox-modal');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const closeLightboxBtn = document.getElementById('close-lightbox');
+            const galleryItems = document.querySelectorAll('.gallery-item');
+
+            galleryItems.forEach((item) => {
+                item.addEventListener('click', () => {
+                    const img = item.querySelector('img');
+                    if (img && lightboxImg && lightboxModal) {
+                        lightboxImg.src = img.src;
+                        lightboxModal.classList.remove('hidden');
+                    }
+                });
+            });
+
+            if (closeLightboxBtn && lightboxModal) {
+                closeLightboxBtn.addEventListener('click', () => lightboxModal.classList.add('hidden'));
+                lightboxModal.addEventListener('click', (e) => {
+                    if (e.target === lightboxModal) lightboxModal.classList.add('hidden');
+                });
+            }
+
+            const khqrModal = document.getElementById('khqr-modal');
+            const openKhqrBtn = document.getElementById('open-khqr-btn');
+            const rsvpKhqrBtn = document.getElementById('rsvp-khqr-btn');
+            const closeKhqrBtn = document.getElementById('close-khqr');
+            const copyAccBtn = document.getElementById('copy-acc-btn');
+
+            function openKhqrModal() {
+                if (khqrModal) khqrModal.classList.remove('hidden');
+            }
+
+            if (openKhqrBtn) openKhqrBtn.addEventListener('click', openKhqrModal);
+            if (rsvpKhqrBtn) rsvpKhqrBtn.addEventListener('click', openKhqrModal);
+            if (closeKhqrBtn && khqrModal) {
+                closeKhqrBtn.addEventListener('click', () => khqrModal.classList.add('hidden'));
+                khqrModal.addEventListener('click', (e) => {
+                    if (e.target === khqrModal) khqrModal.classList.add('hidden');
+                });
+            }
+
+            if (copyAccBtn) {
+                copyAccBtn.addEventListener('click', () => {
+                    const tempInput = document.createElement('input');
+                    tempInput.value = '001234567';
+                    document.body.appendChild(tempInput);
+                    tempInput.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(tempInput);
+                    showToast('បានចម្លងលេខគណនី 001 234 567 រួចរាល់!');
+                });
+            }
+
+            // -----------------------------------------------------------------
+            // 9. Telegram Bot API Integration & Settings Modal
+            // -----------------------------------------------------------------
+            const tgModal = document.getElementById('tg-settings-modal');
+            const openTgBtn = document.getElementById('open-tg-settings-btn');
+            const closeTgBtn = document.getElementById('close-tg-settings');
+            const tgForm = document.getElementById('tg-settings-form');
+            const tgTokenInput = document.getElementById('tg-bot-token');
+            const tgChatIdInput = document.getElementById('tg-chat-id');
+            const testTgBtn = document.getElementById('test-tg-btn');
+
+            function getTelegramConfig() {
+                let savedToken = '';
+                let savedChatId = '';
+                try {
+                    savedToken = localStorage.getItem('wedding_tg_token') || '';
+                    savedChatId = localStorage.getItem('wedding_tg_chat_id') || '';
+                } catch (err) { }
+                return {
+                    token: savedToken.trim() !== '' ? savedToken.trim() : DEFAULT_TELEGRAM_BOT_TOKEN,
+                    chatId: savedChatId.trim() !== '' ? savedChatId.trim() : DEFAULT_TELEGRAM_CHAT_ID
+                };
+            }
+
+            function isTelegramConfigured(config) {
+                return Boolean(
+                    config &&
+                    config.token &&
+                    config.chatId &&
+                    config.token !== 'YOUR_TELEGRAM_BOT_TOKEN' &&
+                    config.chatId !== 'YOUR_TELEGRAM_CHAT_ID'
+                );
+            }
+
+            if (openTgBtn && tgModal) {
+                openTgBtn.addEventListener('click', () => {
+                    const cfg = getTelegramConfig();
+                    if (tgTokenInput) tgTokenInput.value = cfg.token !== 'YOUR_TELEGRAM_BOT_TOKEN' ? cfg.token : '';
+                    if (tgChatIdInput) tgChatIdInput.value = cfg.chatId !== 'YOUR_TELEGRAM_CHAT_ID' ? cfg.chatId : '';
+                    tgModal.classList.remove('hidden');
+                });
+            }
+
+            if (closeTgBtn && tgModal) {
+                closeTgBtn.addEventListener('click', () => tgModal.classList.add('hidden'));
+                tgModal.addEventListener('click', (e) => {
+                    if (e.target === tgModal) tgModal.classList.add('hidden');
+                });
+            }
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    if (lightboxModal) lightboxModal.classList.add('hidden');
+                    if (khqrModal) khqrModal.classList.add('hidden');
+                    if (tgModal) tgModal.classList.add('hidden');
+                }
+            });
+
+            if (tgForm) {
+                tgForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    try {
+                        localStorage.setItem('wedding_tg_token', tgTokenInput ? tgTokenInput.value.trim() : '');
+                        localStorage.setItem('wedding_tg_chat_id', tgChatIdInput ? tgChatIdInput.value.trim() : '');
+                    } catch (err) { }
+                    if (tgModal) tgModal.classList.add('hidden');
+                    showToast('បានរក្សាទុកការកំណត់ Telegram Bot រួចរាល់!');
+                });
+            }
+
+            async function sendTelegramNotification(messageHTML, customConfig = null) {
+                const cfg = customConfig || getTelegramConfig();
+                if (!isTelegramConfigured(cfg)) {
+                    return { ok: false, reason: 'NOT_CONFIGURED' };
+                }
+
+                const url = `https://api.telegram.org/bot${encodeURIComponent(cfg.token)}/sendMessage`;
+                const response = await fetch(url, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        chat_id: cfg.chatId,
+                        text: messageHTML,
+                        parse_mode: 'HTML'
+                    })
+                });
+
+                const data = await response.json();
+                if (!response.ok || !data.ok) {
+                    throw new Error(data.description || `HTTP ${response.status}`);
+                }
+                return { ok: true, data };
+            }
+
+            if (testTgBtn) {
+                testTgBtn.addEventListener('click', async () => {
+                    const testCfg = {
+                        token: tgTokenInput ? tgTokenInput.value.trim() : '',
+                        chatId: tgChatIdInput ? tgChatIdInput.value.trim() : ''
+                    };
+                    if (!isTelegramConfigured(testCfg)) {
+                        showToast('សូមបញ្ចូល Bot Token និង Chat ID ជាមុនសិន!');
+                        return;
+                    }
+                    testTgBtn.disabled = true;
+                    testTgBtn.textContent = 'កំពុងសាកល្បង...';
+                    try {
+                        await sendTelegramNotification(
+                            '🔔 <b>សារសាកល្បងពីសំបុត្រអាពាហ៍ពិពាហ៍ Online</b>\n✅ ការភ្ជាប់ Telegram Bot របស់អ្នកដំណើរការដោយជោគជ័យ!',
+                            testCfg
+                        );
+                        showToast('ផ្ញើសារសាកល្បងទៅ Telegram ជោគជ័យ!');
+                    } catch (err) {
+                        showToast(`បរាជ័យ៖ ${err.message}`);
+                    } finally {
+                        testTgBtn.disabled = false;
+                        testTgBtn.textContent = 'សាកល្បងផ្ញើសារ';
+                    }
+                });
+            }
+
+            // -----------------------------------------------------------------
+            // 10. RSVP & Live Wishes Wall Submission
+            // -----------------------------------------------------------------
+            const rsvpForm = document.getElementById('rsvp-form');
+            const rsvpSubmitBtn = document.getElementById('rsvp-submit-btn');
+            const wishesList = document.getElementById('wishes-list');
+            const wishesCount = document.getElementById('wishes-count');
+            const STORAGE_WISHES_KEY = 'wedding_saved_wishes_v1';
+
+            function escapeHTML(str) {
+                return String(str)
+                    .replace(/&/g, '&amp;')
+                    .replace(/</g, '&lt;')
+                    .replace(/>/g, '&gt;')
+                    .replace(/"/g, '&quot;')
+                    .replace(/'/g, '&#039;');
+            }
+
+            function getStatusBadgeStyle(status) {
+                if (status === 'ចូលរួម' || status === 'នឹងអញ្ជើញចូលរួម') {
+                    return 'bg-emerald-royal/10 text-emerald-royal';
+                }
+                if (status === 'មិនទាន់ប្រាកដ') {
+                    return 'bg-amber-500/15 text-amber-900';
+                }
+                return 'bg-rose-500/10 text-rose-800';
+            }
+
+            function renderWishCard({ name, count, status, wish, time }, prepend = true) {
+                if (!wishesList) return;
+                const badgeClass = getStatusBadgeStyle(status);
+
+                const wishCard = document.createElement('div');
+                wishCard.className = 'p-4 rounded-2xl bg-champagne/90 border border-gold-metallic/45 space-y-1.5 shadow-sm transition-all';
+                wishCard.innerHTML = `
+                    <div class="flex items-center justify-between gap-2">
+                        <span class="font-bold text-sm text-emerald-royal">${escapeHTML(name)}</span>
+                        <span class="text-[11px] ${badgeClass} px-2.5 py-0.5 rounded-full font-semibold shrink-0">${escapeHTML(status)} • ${escapeHTML(count)}</span>
+                    </div>
+                    <p class="text-xs sm:text-sm text-emerald-royal/85 leading-relaxed">${escapeHTML(wish)}</p>
+                    ${time ? `<p class="text-[10px] text-emerald-royal/50 text-right">${escapeHTML(time)}</p>` : ''}
+                `;
+
+                if (prepend) {
+                    wishesList.prepend(wishCard);
+                } else {
+                    wishesList.appendChild(wishCard);
+                }
+            }
+
+            let savedWishes = [];
+            try {
+                savedWishes = JSON.parse(localStorage.getItem(STORAGE_WISHES_KEY)) || [];
+                if (Array.isArray(savedWishes)) {
+                    savedWishes.forEach((item) => renderWishCard(item, true));
+                } else {
+                    savedWishes = [];
+                }
+            } catch (e) {
+                savedWishes = [];
+            }
+
+            if (wishesCount) {
+                wishesCount.textContent = `${3 + savedWishes.length} សារ`;
+            }
+
+            if (rsvpForm && rsvpSubmitBtn) {
+                rsvpForm.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    const nameEl = document.getElementById('guest-name');
+                    const countEl = document.getElementById('guest-count');
+                    const statusEl = document.getElementById('attendance-status');
+                    const wishEl = document.getElementById('guest-wish');
+
+                    const name = nameEl ? nameEl.value.trim() : '';
+                    const count = countEl ? countEl.value : '១ នាក់';
+                    const status = statusEl ? statusEl.value : 'ចូលរួម';
+                    const wish = wishEl ? wishEl.value.trim() : '';
+
+                    if (!name || !wish) return;
+
+                    const originalBtnHTML = rsvpSubmitBtn.innerHTML;
+                    rsvpSubmitBtn.disabled = true;
+                    rsvpSubmitBtn.innerHTML = `
+                        <svg class="animate-spin w-4 h-4 text-emerald-royal" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
+                        </svg>
+                        <span>កំពុងបញ្ជូនសារ...</span>
+                    `;
+
+                    const statusEmoji = status === 'ចូលរួម' ? '✅' : (status === 'មិនទាន់ប្រាកដ' ? '⏳' : '❌');
+                    const timestamp = new Date().toLocaleString('km-KH', {
+                        dateStyle: 'medium',
+                        timeStyle: 'short'
+                    });
+
+                    const telegramMessage = [
+                        `💌 <b>ការឆ្លើយតប &amp; សារជូនពរអាពាហ៍ពិពាហ៍ (ផល បូណា &amp; ទ្រី ទិក)</b>`,
+                        `━━━━━━━━━━━━━━━━━━━━`,
+                        `👤 <b>ភ្ញៀវកិត្តិយស៖</b> ${escapeHTML(name)}`,
+                        `${statusEmoji} <b>ការចូលរួម៖</b> ${escapeHTML(status)}`,
+                        `👥 <b>ចំនួនភ្ញៀវ៖</b> ${escapeHTML(count)}`,
+                        `💐 <b>ពាក្យជូនពរ៖</b>\n"${escapeHTML(wish)}"`,
+                        `━━━━━━━━━━━━━━━━━━━━`,
+                        `🕒 <i>${escapeHTML(timestamp)}</i>`
+                    ].join('\n');
+
+                    let telegramSent = false;
+                    let telegramError = null;
+                    try {
+                        const res = await sendTelegramNotification(telegramMessage);
+                        telegramSent = res.ok;
+                    } catch (err) {
+                        telegramError = err;
+                    }
+
+                    const newEntry = { name, count, status, wish, time: timestamp };
+                    renderWishCard(newEntry, true);
+                    savedWishes.push(newEntry);
+                    try {
+                        localStorage.setItem(STORAGE_WISHES_KEY, JSON.stringify(savedWishes));
+                    } catch (err) { }
+
+                    if (wishesCount) {
+                        wishesCount.textContent = `${3 + savedWishes.length} សារ`;
+                    }
+                    if (wishEl) {
+                        wishEl.value = '';
+                    }
+
+                    rsvpSubmitBtn.disabled = false;
+                    rsvpSubmitBtn.innerHTML = originalBtnHTML;
+                    if (typeof lucide !== 'undefined') {
+                        lucide.createIcons();
+                    }
+
+                    if (telegramSent) {
+                        showToast('សូមអរគុណ! សារជូនពរត្រូវបានផ្ញើទៅកាន់ Telegram ជោគជ័យ។');
+                    } else if (telegramError) {
+                        showToast('បានបង្ហោះសារជូនពររួចរាល់ (ប៉ុន្តែការផ្ញើទៅ Telegram មានបញ្ហា)។');
+                    } else {
+                        showToast('សូមអរគុណ! សារជូនពររបស់អ្នកត្រូវបានបង្ហោះរួចរាល់។');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>
